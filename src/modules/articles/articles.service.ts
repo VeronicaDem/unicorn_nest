@@ -9,13 +9,16 @@ export class ArticlesService {
     async createArticle(params: {
         content: Article["content"];
         userId: User['id'],
-        images: Article['images']
+        images: [String]
     }) {
         const { content, userId, images } = params;
+        const buffer = Buffer.from(JSON.stringify(images));
+        var bufferArray: Buffer[] = images.map(image => Buffer.from(image));
+
         const article = await this.repository.createArticle({
             data: {
                 content,
-                images,
+                images: bufferArray,
                 user: {
                     connect: {
                         id: userId,
