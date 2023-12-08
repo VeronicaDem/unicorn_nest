@@ -4,6 +4,7 @@ import { PrismaModule } from './modules/database/prisma.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApiModule } from './api/api.module';
+import { UsersModule } from './modules/users/users.module';
 @Module({
   imports: [
     ArticlesModule,
@@ -13,6 +14,7 @@ import { ApiModule } from './api/api.module';
       autoSchemaFile: true,
     }),
     ApiModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],

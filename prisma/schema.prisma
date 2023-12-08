@@ -11,11 +11,24 @@ datasource db {
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
-  username String
-  password String
-  articles Article[]
-  likes    Like[]
+  id         Int          @id @default(autoincrement())
+  username   String
+  password   String
+  articles   Article[]
+  likes      Like[]
+  AuthEntity AuthEntity[]
+}
+
+model AuthEntity {
+  id                    Int      @id @default(autoincrement())
+  user                  User     @relation(fields: [userId], references: [id])
+  userId                Int
+  refreshToken          String
+  accessToken           String?
+  refreshTokenExpiresAt DateTime
+  accessTokenExpiresAt  DateTime
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
 }
 
 model Like {
