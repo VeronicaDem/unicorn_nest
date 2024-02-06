@@ -10,8 +10,8 @@ export class AuthType implements IAuth {
   public refreshToken?: string;
 
   @Field()
-  public accessTokenExpiresAt: number;
+  public accessTokenExpiresAt: Date;
 
   @Field()
-  public refreshTokenExpiresAt?: number;
+  public refreshTokenExpiresAt?: Date;
 }
